@@ -1,88 +1,107 @@
-{% extends "base.html" %}
-
-{% block home %}
-<div class="container-fluid" style="background-image: url('https://images.unsplash.com/photo-1588421357574-87938a86fa28?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Ymx1ZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60'); background-size: cover; height: 300px; padding: 20px;">
+{% extends "base.html" %} {% block home %}
+<div
+  class="container-fluid"
+  style="
+    background-image: url('https://images.unsplash.com/photo-1588421357574-87938a86fa28?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Ymx1ZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60');
+    background-size: cover;
+    height: 300px;
+    padding: 20px;
+  "
+>
   <div class="row justify-content-center align-items-center mt-5">
     <div class="col-md-6">
       <h1 class="text-center text-white">Find the best service here</h1>
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search services" aria-label="Search services" aria-describedby="search-btn">
-        <button class="btn btn-primary" type="button" id="search-btn">Search</button>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search services"
+          aria-label="Search services"
+          aria-describedby="search-btn"
+        />
+        <button class="btn btn-primary" type="button" id="search-btn">
+          Search
+        </button>
       </div>
     </div>
   </div>
 </div>
 
 <div class="container">
-    <div class="row justify-content-center text-center">
-        <div class="col-6">
-            <h2>Services</h2>
-        </div>
+  <div class="row justify-content-center text-center">
+    <div class="col-6">
+      <h2>Services</h2>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-4">
-            <div class="card" onmouseover="changeCardStyle(this)" onmouseout="resetCardStyle(this)">
-                <img src="service1.jpg" class="card-img-top" alt="Service 1">
-                <div class="card-body">
-                    <h5 class="card-title">Manpower Services</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
+  </div>
+  <div class="row justify-content-center">
+    {% for object in data %}
+    <div class="col-4">
+      <div
+        class="card"
+        onmouseover="changeCardStyle(this)"
+        onmouseout="resetCardStyle(this)"
+      >
+        <img src="service1.jpg" class="card-img-top" alt="logo" />
+        <div class="card-body">
+          <h5 class="card-title">{{object.title}}</h5>
+          <p class="card-text">{{object.description}}</p>
+          <button
+            class="btn btn-primary"
+            data-bs-target="#exampleModalToggle"
+            data-bs-toggle="modal"
+          >
+            Get quotes
+          </button>
         </div>
-        <div class="col-4">
-            <div class="card" onmouseover="changeCardStyle(this)" onmouseout="resetCardStyle(this)">
-                <img src="service2.jpg" class="card-img-top" alt="Service 2">
-                <div class="card-body">
-                    <h5 class="card-title">Household Services</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card" onmouseover="changeCardStyle(this)" onmouseout="resetCardStyle(this)">
-                <img src="service3.jpg" class="card-img-top" alt="Service 3">
-                <div class="card-body">
-                    <h5 class="card-title">Housing Society Services</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card" onmouseover="changeCardStyle(this)" onmouseout="resetCardStyle(this)">
-                <img src="service4.jpg" class="card-img-top" alt="Service 4">
-                <div class="card-body">
-                    <h5 class="card-title">Recruitment Services</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card" onmouseover="changeCardStyle(this)" onmouseout="resetCardStyle(this)">
-                <img src="service5.jpg" class="card-img-top" alt="Service 5">
-                <div class="card-body">
-                    <h5 class="card-title">Civil Services</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModalToggle"
+  aria-hidden="true"
+  aria-labelledby="exampleModalToggleLabel"
+  tabindex="-1"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
+          Tell us Your requirement
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form action="#">
+          <label for="fname">Requirement:</label>
+          <input type="text" id="fname" name="fname" /><br /><br />
+          <label for="lname">Phone Number:</label>
+          <input type="text" id="lname" name="lname" /><br /><br />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-    function changeCardStyle(card) {
-        card.style.backgroundColor = "#e9ecef";
-        card.style.borderColor = "blue";
-    }
+  function changeCardStyle(card) {
+    card.style.backgroundColor = "#e9ecef";
+    card.style.borderColor = "blue";
+  }
 
-    function resetCardStyle(card) {
-        card.style.backgroundColor = "white";
-        card.style.borderColor = "#dee2e6";
-    }
+  function resetCardStyle(card) {
+    card.style.backgroundColor = "white";
+    card.style.borderColor = "#dee2e6";
+  }
 </script>
 
 {% endblock %}
